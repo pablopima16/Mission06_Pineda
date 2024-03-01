@@ -9,5 +9,6 @@ namespace Mission06_Pineda.Models
         }
 
         public DbSet<MovieModel> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

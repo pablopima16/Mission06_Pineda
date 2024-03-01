@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission06_Pineda.Models;
 using System.Diagnostics;
 
@@ -30,10 +31,24 @@ namespace Mission06_Pineda.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Form(MovieModel response)
+        public IActionResult AllMovies()
         {
-            _context.Movies.Add(response);
+            //var movies = _context.Movies.Include(x => x.Category).ToList();
+
+            //return View("AllMovies", movies);
+            //ViewBag.Categories = _context.Categories.ToList();
+            //.OrderBy(x => x.Category)
+
+            //return View("AllMovies", new MovieModel());
+
+            var movies = _context.Movies.Include(x => x.Category).ToList(); // This fetches a list of movies
+            return View(movies); // Pass the list to the view
+        }
+
+        [HttpPost]
+        public IActionResult Form(MovieModel blah)
+        {
+            _context.Movies.Add(blah);
             _context.SaveChanges();
             return View("Confirmation");
         }
