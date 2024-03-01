@@ -4,10 +4,10 @@ namespace Mission06_Pineda.Models
 {
     public class MoviesContext : DbContext
     {
-        public MoviesContext(DbContextOptions<MoviesContext> options) : base (options) 
+        public MoviesContext(DbContextOptions<MoviesContext> options) : base(options)
         {
         }
 
-        public DbSet<Application> Movies { get; set; }
+        public DbSet<MovieModel> Movies { get; set; }
     }
 }
