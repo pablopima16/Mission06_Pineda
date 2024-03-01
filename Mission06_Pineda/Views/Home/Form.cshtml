@@ -10,6 +10,8 @@
 
 <form method="post">
 
+    <input type="hidden" asp-for="MovieId" />
+
     <label asp-for="Title">Title:</label>
     <input asp-for="Title" required />
     <br />
@@ -39,29 +41,21 @@
 
     <label asp-for="Director">Director:</label>
     <input asp-for="Director" required />
-@*     <br />
-    <label asp-for="Director2">Director 2 (if applicable):</label>
-    <input asp-for="Director2" />
-    <br />
-    <label asp-for="Director3">Director 3 (if applicable):</label>
-    <input asp-for="Director3" />
-    <br />
-    <label asp-for="Director4">Director 4 (if applicable):</label>
-    <input asp-for="Director4" /> *@
+
     <br />
 
-    <label asp-for="Edited">Edited (if applicable):</label>
+    <label asp-for="Edited">Edited:</label>
     <select asp-for="Edited">
         <option value="true">Yes</option>
         <option value="false">No</option>
     </select>
     <br />
-    <label asp-for="LentTo">Lent To (if applicable):</label>
+    <label asp-for="LentTo">Lent To:</label>
     <input asp-for="LentTo" />
     <br />
-    <label asp-for="Notes">Notes (if applicable):</label>
+    <label asp-for="Notes">Notes:</label>
     <input asp-for="Notes" maxlength="25" />
     <br />
 
-    <button type="submit">Submit Movie</button>
+    <button type="submit">Submit</button>
 </form>

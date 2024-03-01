@@ -53,6 +53,46 @@ namespace Mission06_Pineda.Controllers
             return View("Confirmation");
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _context.Movies
+                .Single(x => x.MovieId == id);
+
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View("Form", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MovieModel updatedInfo)
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("AllMovies");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _context.Movies
+                 .Single(x => x.MovieId == id);
+
+            return View(recordToDelete);
+
+        }
+
+        [HttpPost]
+        public IActionResult Delete(MovieModel deleteinfo)
+        {
+            _context.Movies.Remove(deleteinfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("AllMovies");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

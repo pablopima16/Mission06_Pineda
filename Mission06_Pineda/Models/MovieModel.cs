@@ -5,12 +5,8 @@ namespace Mission06_Pineda.Models
 {
     public class MovieModel
     {
-        [Key][Required]
-        //public int MovieId { get; set; }
-
-        //[ForeignKey("Category")]
-        //public int? CategoryId { get; set; }
-        //public Category? Category { get; set; }
+        [Key]
+        [Required]
         public int MovieId { get; set; }
 
         [ForeignKey("CategoryId")]
@@ -18,21 +14,25 @@ namespace Mission06_Pineda.Models
 
         public Category? Category { get; set; }
 
-        public string? Rating { get; set; }
-
         [Required]
         public string Title { get; set; }
 
         [Required]
-        public int CopiedToPlex { get; set; }
-
-        [Required][Range(1888, int.MaxValue, ErrorMessage = "Value must be higher than 1888")]
+        [Range(1888, int.MaxValue, ErrorMessage = "Value must be higher than 1888")]
         public int Year { get; set; }
 
-        [Required]
         public string? Director { get; set; }
-        public int Edited { get; set; }
+
+        public string? Rating { get; set; }
+
+        [Required]
+        public bool Edited { get; set; }
+
         public string? LentTo { get; set; }
+
+        [Required]
+        public int CopiedToPlex { get; set; }
+        
         public string? Notes { get; set; }
         
     }
