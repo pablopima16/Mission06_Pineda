@@ -1,15 +1,16 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Mission06_Pineda.Models;
+using System.Diagnostics;
 
 namespace Mission06_Pineda.Controllers
 {
     public class HomeController : Controller
     {
-        private MoviesContext _movieContext;
-        public HomeController(MoviesContext temp) 
+        private MoviesContext _context;
+
+        public HomeController(MoviesContext temp)
         {
-            _movieContext = temp;
+            _context = temp;
         }
 
         public IActionResult Index()
@@ -21,19 +22,27 @@ namespace Mission06_Pineda.Controllers
         {
             return View();
         }
+
+
         [HttpGet]
-        public IActionResult MovieForm()
+        public IActionResult Form()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult MovieForm(Application response) 
+        public IActionResult Form(MovieModel response)
         {
-            _movieContext.Movies.Add(response); // Add record to database//
-            _movieContext.SaveChanges();
-            return View("Confirmation", response);
+            _context.Movies.Add(response);
+            _context.SaveChanges();
+            return View("Confirmation");
         }
 
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
