@@ -30,7 +30,7 @@ namespace Mission06_Pineda.Controllers
         [HttpPost]
         public IActionResult MovieForm(Application response) 
         {
-            _movieContext.Movies.Add(response); // Add record to database
+            _movieContext.Movies.Add(response); // Add record to database//
             _movieContext.SaveChanges();
             return View("Confirmation", response);
         }
